@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
-import UserHeader from './UserHeader';
 
 class PostList extends React.Component {
     componentDidMount() {
         this.props.fetchPosts();
+    }
+
+    findUserById(id) {
+        const user = this.props.users.find(e => e.id === id)
+        if (user !== undefined) {
+            return user.name
+        }
     }
 
     renderList() {
@@ -17,7 +23,7 @@ class PostList extends React.Component {
                         <div className="description">
                             <h2>{post.title}</h2>
                             <p>{post.body}</p>
-                            <h3><UserHeader /></h3>
+                            <h3>{this.findUserById(post.userId)}</h3>
                         </div>
                     </div>
                 </div>
@@ -31,7 +37,7 @@ class PostList extends React.Component {
 };
 
 const mapStateToProps = state => {
-    return { posts: state.posts };
+    return { posts: state.posts, users: state.users };
 }
 
 export default connect(mapStateToProps, { fetchPosts })(PostList);
