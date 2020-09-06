@@ -16,7 +16,7 @@ class UserHeader extends React.Component {
     }
 
     render() {
-        return <p>{this.renderUser()}</p>;
+        return <div className="header">{this.renderUser()}</div>;
     };
 }
 
