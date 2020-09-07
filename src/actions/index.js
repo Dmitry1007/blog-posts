@@ -1,3 +1,4 @@
+// import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
 export const fetchPosts = () => async dispatch => {
@@ -11,3 +12,12 @@ export const fetchUser = (id) => async dispatch => {
 
     dispatch({ type: 'FETCH_USER', payload: response.data })
 };
+
+// In old school JS
+// export const fetchUser = function(id) {
+//     return async function(dispatch) {
+//         const response = await jsonPlaceholder.get(`/users/${id}`);
+
+//         dispatch({ type: 'FETCH_USER', payload: response.data });
+//     };
+// };
